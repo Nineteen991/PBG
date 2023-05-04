@@ -30,13 +30,19 @@ export default function Navbar() {
             onClick={ () => setToggleMenu(prev => !prev) }
           >
             <ul className='nav-links'>
-              <li className='nav-link'>Home</li>
-              <Link to='/your-benefits'>
-                <li className='nav-link'>Your Benefits</li>
-              </Link>
-              <Link to='/events'>Events</Link>
+              <li className='nav-link'>
+                <Link to='/'>Home</Link>
+              </li>
+              <li className='nav-link'>
+                <Link to='/your-benefits'>Your Benefits</Link>
+              </li>
+              <li className='nav-link'>
+                <Link to='/events'>Events</Link>
+              </li>
+              <li className='nav-link'>
+                <Link to='/dashboard'>Dashboard</Link>
+              </li>
               {/* <li className='nav-link'>Services</li> */}
-              {/* <li className='nav-link'>Events</li> */}
               {/* <li className='nav-link'>News</li>
               <li className='nav-link'>Wellness</li>
               <li className='nav-link'>Resources</li>
