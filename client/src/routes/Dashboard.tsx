@@ -3,7 +3,9 @@ import { useEffect, useState } from 'react'
 export default function Dashboard() {
   const [addEvent, setAddEvent] = useState('')
 
-  
+  function handleChange(e: React.FormEvent<EventTarget>) {
+    console.log(e.target)
+  }
 
   return (
     <div className='dashboard'>
