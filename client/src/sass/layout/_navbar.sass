@@ -1,0 +1,70 @@
+.nav
+  width: 100%
+  padding: 1.5rem 2rem
+  position: fixed
+  z-index: 100
+  display: flex
+  justify-content: space-between
+  align-items: center
+
+.nav-logo
+  // padding: 0 2rem
+  height: 4.5rem
+  width: 6.5rem
+  cursor: pointer
+  // @include clip-path
+
+.nav-burger, .nav-extended
+  width: 3.5rem
+  z-index: 20
+  position: relative
+  cursor: pointer
+
+  // @include responsive(large)
+  //   display: none
+
+.line1, .line2, .line3
+  height: .5rem
+  width: 3.5rem
+  margin: .5rem 0
+  background: $pbg-blue
+  transition: .5s
+  border: 1px solid black
+
+.nav-extended .line1
+  transform: translate(0, 1rem) rotate(-45deg)
+  background-color: $luminous-orange
+
+.nav-extended .line2
+  opacity: 0
+
+.nav-extended .line3
+  transform: translate(0, -1rem) rotate(45deg)
+  background-color: $luminous-orange
+
+.nav-menu
+  width: calc(100% - 12rem)
+  max-width: 50rem
+  height: 100%
+  top: 0
+  right: 0
+  @include background
+  position: fixed
+  z-index: 10
+  padding: 2.5rem
+  @include flex-column
+  justify-content: center
+  align-items: center
+  text-align: center
+
+.nav-links
+  color: $luminous-orange
+  font-size: 2rem
+  font-weight: bold
+  text-shadow: 1px 1px black
+  
+.nav-link:not(:last-of-type) 
+    margin-bottom: 1rem
+
+.nav-wide
+  display: none

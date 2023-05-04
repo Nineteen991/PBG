@@ -1,0 +1,11 @@
+@mixin flex-column
+  display: flex
+  flex-direction: column
+
+@mixin background 
+  /* fallback for old browsers */
+  background: $pbg-blue
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(to right, $pale-cyan, $pbg-blue, $vivid-cyan)
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right, $pale-cyan, $pbg-blue, $vivid-cyan)
