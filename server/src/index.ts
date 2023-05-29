@@ -4,6 +4,7 @@ import cors from 'cors'
 import helmet from 'helmet'
 
 import connectDB from './db/connect'
+import eventRouter from './routers/eventRouter'
 
 dotenv.config()
 const app = express()
@@ -18,6 +19,7 @@ app.use(express.json({ limit: "10mb" }))
 app.get('/', (req: Request, res: Response) => {
   res.send("Server is probably running")
 })
+app.use('/api/v1/events', eventRouter)
 
 if (!process.env.PORT) {
   process.exit(1)

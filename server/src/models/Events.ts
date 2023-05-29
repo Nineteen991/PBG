@@ -1,6 +1,11 @@
-import mongoose from "mongoose"
+import mongoose, { Document, Schema } from "mongoose"
 
-const EventSchema = new mongoose.Schema({
+interface EventModel extends Document {
+  name: string 
+  eventLink: string
+}
+
+const EventSchema: Schema = new mongoose.Schema({
   name: {
     type: String,
     required: true
@@ -9,7 +14,6 @@ const EventSchema = new mongoose.Schema({
     type: String,
     required: true
   }
-})
+}, { timestamps: true })
 
-const Event = mongoose.model('Event', EventSchema)
-export default Event
+export default mongoose.model<EventModel>('Event', EventSchema)
