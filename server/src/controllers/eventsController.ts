@@ -24,19 +24,15 @@ const getEvents = async (req: Request, res: Response) => {
 }
 
 const deleteEvent = async (req: Request, res: Response) => {
-  const { id } = req.body as DeleteEvent 
+  const { id } = req.body as DeleteEvent
+
   const event = await Event.findOne({ _id: id })
   if (!event) {
     throw new Error("Event not found")
   }
-
   event.deleteOne()
 
   res.status(200).json({ msg: `Event with id # ${ id } deleted` })
 }
 
-export {
-  createEvent,
-  getEvents,
-  deleteEvent
-}
+export { createEvent, getEvents, deleteEvent }

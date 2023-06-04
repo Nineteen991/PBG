@@ -1,5 +1,7 @@
 import { useState } from 'react'
 
+import FileUpload from '../components/FileUpload'
+
 export default function Dashboard() {
   const [addEvent, setAddEvent] = useState('')
 
@@ -25,6 +27,8 @@ export default function Dashboard() {
       <div className='show-events'>
 
       </div>
+
+      <FileUpload />
     </div>
   )
 }
