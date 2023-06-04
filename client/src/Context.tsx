@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useState } from "react"
 
-import { ContextValues } from "./utils/interfaces"
+import { ContextValues } from "./utils/interfaces/context.interfaces"
 
 const Context = createContext<ContextValues | null>(null)
 

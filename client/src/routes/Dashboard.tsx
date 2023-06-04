@@ -1,34 +1,28 @@
-import { useState } from 'react'
-
+import AddEvent from '../components/AddEvent'
 import FileUpload from '../components/FileUpload'
+import SortGroupDocs from '../components/SortGroupDocs'
 
 export default function Dashboard() {
-  const [addEvent, setAddEvent] = useState('')
-
-  function handleSubmit(e: React.FormEvent<EventTarget>) {
-    const target = e.target as HTMLInputElement
-    const { value } = target
-    setAddEvent(value)
-  }
-
+  
   return (
     <div className='dashboard'>
-      <div className='add-event'>
+      <div className='dashboard-sections'>
         <h1 className='section-title'>Add Event</h1>
-        <form className='add-event-form' onSubmit={ handleSubmit }>
-          <input
-            name='add-event'
-            className='dashboard-input'
-          />
-          <button className='add-event-btn btn'>Add Event</button>
-        </form>
+        <AddEvent />
       </div>
 
-      <div className='show-events'>
-
+      <div className='dashboard-sections'>
+        <h1 className='section-title'>
+          Add Documents
+          <span className='title-span'> (ie: booklets, summaries, flyers)</span>
+        </h1>
+        <FileUpload />
       </div>
 
-      <FileUpload />
+      <div className='dashboard-sections'>
+        <h1 className='section-title'>Sort Documents by Group</h1>
+        <SortGroupDocs />
+      </div>
     </div>
   )
 }

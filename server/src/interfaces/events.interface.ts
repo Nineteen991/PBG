@@ -1,5 +1,5 @@
 export interface EventReqBody {
-  name: string 
+  eventName: string 
   eventLink: string
 }
 

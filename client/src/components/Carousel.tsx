@@ -1,6 +1,6 @@
 import { useState, useEffect, memo } from 'react'
 
-import { CarouselArray } from '../utils/interfaces'
+import { CarouselArray } from '../utils/interfaces/carousel.interfaces'
 
 function Carousel ({ carouselArray, captions, includeDots }: CarouselArray) {
   const [slideIndex, setSlideIndex] = useState<number>(0)

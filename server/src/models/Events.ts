@@ -1,12 +1,12 @@
 import mongoose, { Document, Schema } from "mongoose"
 
 interface EventModel extends Document {
-  name: string 
+  eventName: string 
   eventLink: string
 }
 
 const EventSchema: Schema = new mongoose.Schema({
-  name: {
+  eventName: {
     type: String,
     required: true
   },

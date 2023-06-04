@@ -4,13 +4,13 @@ import Event from '../models/Events'
 import { EventReqBody, DeleteEvent } from "../interfaces/events.interface"
 
 const createEvent = async (req: Request, res: Response) => {
-  const { name, eventLink } = req.body as EventReqBody
+  const { eventName, eventLink } = req.body as EventReqBody
 
-  if (!name || !eventLink) {
+  if (!eventName || !eventLink) {
     throw new Error("Need both name & event link, sucka!")
   }
 
-  const event = await Event.create({ name, eventLink })
+  const event = await Event.create({ eventName, eventLink })
   if (!event) {
     throw new Error("Event not saved to da database :(")
   }
