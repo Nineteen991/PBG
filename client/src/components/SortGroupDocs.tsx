@@ -6,7 +6,7 @@ export default function SortGroupDocs() {
     const target = e.target as HTMLInputElement
     const { value } = target 
     console.log(value)
-    axios.post("http://localhost:5000/api/v1/summaries", {value} )
+    axios.post("http://localhost:5000/api/v1/summaries", {value})
   }
 
   return (
