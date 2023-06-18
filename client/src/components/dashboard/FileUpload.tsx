@@ -1,8 +1,8 @@
 import { useContext, useState } from 'react'
 import axios from 'axios'
 
-import { Context } from '../Context'
-import { ContextValues } from '../utils/interfaces/context.interfaces'
+import { Context } from '../../Context'
+import { ContextValues } from '../../utils/interfaces/context.interfaces'
 
 export default function FileUpload() {
   const [fileToUpload, setFileToUpload] = useState<FormData | null>(null)

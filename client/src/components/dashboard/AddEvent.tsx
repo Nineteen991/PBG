@@ -1,9 +1,13 @@
 import { useState } from 'react'
-import axios from 'axios'
 
-import { AddEventState } from '../utils/interfaces/events.interfaces'
+import { AddEventState } from '../../utils/interfaces/events.interfaces'
+import { axiosPost } from '../../utils/axiosReqs'
 
-export default function AddEvent() {
+interface addEvt {
+  setFetching: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+export default function AddEvent({setFetching}: addEvt) {
   const [addEvent, setAddEvent] = useState<AddEventState>({
     eventName: '',
     eventLink: ''
@@ -20,9 +24,11 @@ export default function AddEvent() {
     ))
   }
 
-  function handleSubmit(e: React.FormEvent<EventTarget>) {
+  function HandleSubmit(e: React.FormEvent<EventTarget>) {
     e.preventDefault()
-    axios.post("http://localhost:5000/api/v1/events", addEvent)
+    axiosPost('events', addEvent)
+    setFetching(true)
+    // axios.post("http://localhost:5000/api/v1/events", addEvent)
     setAddEvent({
       eventName: '',
       eventLink: ''
@@ -30,7 +36,7 @@ export default function AddEvent() {
   }
 
   return (
-    <form className='add-event-form' onSubmit={ handleSubmit }>
+    <form className='add-event-form' onSubmit={ HandleSubmit }>
       <input
         name='eventName'
         className='dashboard-input'

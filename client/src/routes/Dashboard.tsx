@@ -1,16 +1,24 @@
-import AddEvent from '../components/AddEvent'
-import FileUpload from '../components/FileUpload'
-import SortGroupDocs from '../components/SortGroupDocs'
+import { useState } from 'react'
+
+import AddEvent from '../components/dashboard/AddEvent'
+import NixEvent from '../components/dashboard/NixEvent'
+import FileUpload from '../components/dashboard/FileUpload'
+import SortGroupDocs from '../components/dashboard/SortGroupDocs'
 
 export default function Dashboard() {
-  
+  const [fetching, setFetching] = useState(false)
   return (
     <div className='dashboard'>
       <div className='dashboard-sections'>
         <h1 className='section-title'>Add Event</h1>
-        <AddEvent />
+        <AddEvent setFetching={ setFetching } />
       </div>
 
+      <div className='dashboard-sections'>
+        <h1 className='section-title'>Nix Event</h1>
+        <NixEvent fetching={fetching} setFetching={ setFetching } />
+      </div>
+  
       <div className='dashboard-sections'>
         <h1 className='section-title'>
           Add Documents
