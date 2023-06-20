@@ -1,16 +1,17 @@
 import { useState } from 'react'
 
 import { AddEventState } from '../../utils/interfaces/events.interfaces'
-import { axiosPost } from '../../utils/axiosReqs'
+import { usePostEvents } from '../../hooks/usePostEvents'
 
-interface addEvt {
-  setFetching: React.Dispatch<React.SetStateAction<boolean>>
-}
-
-export default function AddEvent({setFetching}: addEvt) {
+export default function AddEvent() {
+  const { mutate: eventMutation } = usePostEvents()
   const [addEvent, setAddEvent] = useState<AddEventState>({
     eventName: '',
-    eventLink: ''
+    eventLink: '',
+    eventDay: '',
+    eventTime: '',
+    eventType: '',
+    eventDesc: '',
   })
 
   function handleChange(e: React.FormEvent<EventTarget>) {
@@ -26,29 +27,77 @@ export default function AddEvent({setFetching}: addEvt) {
 
   function HandleSubmit(e: React.FormEvent<EventTarget>) {
     e.preventDefault()
-    axiosPost('events', addEvent)
-    setFetching(true)
-    // axios.post("http://localhost:5000/api/v1/events", addEvent)
+    eventMutation({
+      site: "events", 
+      data: addEvent
+    })
     setAddEvent({
       eventName: '',
-      eventLink: ''
+      eventLink: '',
+      eventDay: '',
+      eventTime: '',
+      eventType: '',
+      eventDesc: '',
     })
   }
 
   return (
     <form className='add-event-form' onSubmit={ HandleSubmit }>
+      <label htmlFor='input-name' className='labels'>Name</label>
       <input
         name='eventName'
         className='dashboard-input'
+        id="input-name"
         onChange={ handleChange }
         value={ addEvent.eventName }
         required
       />
+      <label htmlFor='input-link' className='labels'>
+        Web Link (optional)
+      </label>
       <input 
         name='eventLink'
         className='dashboard-input'
+        id="input-link"
         onChange={ handleChange }
         value={ addEvent.eventLink }
+      />
+      <label htmlFor='input-day' className='labels'>Day</label>
+      <input 
+        name='eventDay'
+        className='dashboard-input'
+        id="input-day"
+        onChange={ handleChange }
+        value={ addEvent.eventDay }
+        required
+      />
+      <label htmlFor='input-time' className='labels'>
+        Time (optional)
+      </label>
+      <input
+        name='eventTime'
+        className='dashboard-input'
+        id="input-time"
+        onChange={ handleChange }
+        value={ addEvent.eventTime }
+      />
+      <label htmlFor='input-type' className='labels'>
+        Type (ie: webinar) (optional)
+      </label>
+      <input
+        name='eventType'
+        className='dashboard-input'
+        id="input-type"
+        onChange={ handleChange }
+        value={ addEvent.eventType }
+      />
+      <label htmlFor="input-desc" className='labels'>Description</label>
+      <textarea
+        name='eventDesc'
+        className='dashboard-input'
+        id="input-desc"
+        onChange={ handleChange }
+        value={ addEvent.eventDesc }
         required
       />
       <button className='add-event-btn btn'>Add Event</button>

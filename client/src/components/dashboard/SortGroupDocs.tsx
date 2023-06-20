@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import axios from 'axios'
 
+import { axiosGet } from '../../utils/axiosReqs'
+
 export default function SortGroupDocs() {
   const selectHandler = (e: React.FormEvent<EventTarget>) => {
     const target = e.target as HTMLInputElement
@@ -11,10 +13,12 @@ export default function SortGroupDocs() {
 
   return (
     <div className='sort-group'>
-      <select onChange={ selectHandler }>
-        <option value=""></option>
-        <option value="Tavant">Tavant</option>
-      </select>
+      <form className='sort-group-form'>
+        <select onChange={ selectHandler }>
+          <option value=""></option>
+          <option value="Tavant">Tavant</option>
+        </select>
+      </form>
     </div>
   )
 }

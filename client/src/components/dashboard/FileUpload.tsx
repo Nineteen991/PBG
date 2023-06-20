@@ -1,12 +1,10 @@
-import { useContext, useState } from 'react'
+import { useState } from 'react'
 import axios from 'axios'
-
-import { Context } from '../../Context'
-import { ContextValues } from '../../utils/interfaces/context.interfaces'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function FileUpload() {
   const [fileToUpload, setFileToUpload] = useState<FormData | null>(null)
-  const { setPlanSummaries } = useContext(Context) as ContextValues
 
   const onChangeHandler = (e: React.FormEvent<EventTarget>) => {
     const target = e.target as HTMLInputElement
@@ -18,7 +16,8 @@ export default function FileUpload() {
   
   const onSubmitHandler = () => {
     axios.post("http://localhost:5000/api/v1/summaries", fileToUpload)
-      .then(res => setPlanSummaries(res.data.url))
+      .then(res => res.status === 200 && toast("Suksefully Uploaded, yay!"))
+      .catch(error => console.error("Post error: ", error))
   }
 
   return (
@@ -30,6 +29,7 @@ export default function FileUpload() {
       >
         Upload
       </button>
+      <ToastContainer />
     </div>
   )
 }

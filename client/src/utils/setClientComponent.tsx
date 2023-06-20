@@ -6,4 +6,4 @@ export const setClientComponent = {
     "PBG": PBG,
     "Tavant": Tavant,
     "UA": UA,
-  }
+}

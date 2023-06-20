@@ -1,8 +1,8 @@
 export interface EventReqBody {
   eventName: string 
-  eventLink: string
-}
-
-export interface DeleteEvent {
-  id: string
+  eventLink?: string
+  eventDay: string
+  eventTime?: string
+  eventType?: string
+  eventDesc: string
 }

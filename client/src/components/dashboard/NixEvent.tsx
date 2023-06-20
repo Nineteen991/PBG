@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext } from "react"
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import { ToastContainer, toast } from 'react-toastify';
@@ -6,22 +6,17 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import { ContextValues } from '../../utils/interfaces/context.interfaces'
 import { Context } from "../../Context"
-import { axiosDelete } from '../../utils/axiosReqs'
+import { useDeleteEvents } from "../../hooks/useDeleteEvents";
 
-interface fetchingEvt {
-  fetching: boolean
-  setFetching: React.Dispatch<React.SetStateAction<boolean>>
-}
-
-export default function NixEvent({fetching, setFetching}: fetchingEvt) {
+export default function NixEvent() {
   const { events, setEvents } = useContext(Context) as ContextValues
+  const { mutate: deleteMutation } = useDeleteEvents()
 
   const fetchEvents = async () => {
     await axios.get('http://localhost:5000/api/v1/events')
       .then(res => {
         setEvents(res.data.events)
       })
-      .catch(error => console.error("Failed to fetch events: ", error))
   }
 
   useQuery({
@@ -29,17 +24,7 @@ export default function NixEvent({fetching, setFetching}: fetchingEvt) {
     queryFn: fetchEvents
   })
 
-  useEffect(() => {
-    fetching && fetchEvents()
-    setFetching(false)
-  }, [fetching, setFetching])
-
-  const nixEvent = (id: string) => {
-    axiosDelete('events', id)
-      .then(res => toast("Wow so easy!"))
-      .catch(error => console.error("Failed to delete event: ", error))
-    alert('nixed')
-  }
+  const nixEvent = (id: string) => deleteMutation(id)
 
   return (
     <div className="nix-event">

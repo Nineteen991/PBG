@@ -6,10 +6,9 @@ export const axiosGet = async (endpoint: string) => {
 }
 
 export const axiosPost = async (endpoint: string, data: any) => {
-  await axios.post(`http://localhost:5000/api/v1/${endpoint}`, data)
-    .catch(error => console.error("Post error: ", error))
+  return await axios.post(`http://localhost:5000/api/v1/${endpoint}`, data)
 }
 
 export const axiosDelete = async (endpoint: string, id: string) => {
-  await axios.delete(`http://localhost:5000/api/v1/${endpoint}/${id}`)
+  return await axios.delete(`http://localhost:5000/api/v1/${endpoint}/${id}`)
 }

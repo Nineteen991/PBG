@@ -28,33 +28,27 @@ export default function Events() {
         events.length > 0
           ? events.map((event, index) => (
               <div className="event-div" key={index}>
-                <a 
-                  href={ event.eventLink } 
-                  className="event-link"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <h2 className="event-name">{ event.eventName }</h2>
-                </a>
+                <div className="event-left-div">
+                  <h3 className='event-titles event-info'>
+                    { event.eventName }
+                  </h3>
+                  <h3 className='event-info'>{ event.eventDay }</h3>
+                  <h3 className='event-info'>{ event.eventTime }</h3>
+                  <h3 className='event-info'>{ event.eventType }</h3>
+                  <a 
+                    href={ event.eventLink } 
+                    className="event-link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <h3 className="event-info">Click Here To Register</h3>
+                  </a>
+                </div>
+                <div className="event-right-div">{ event.eventDesc }</div>
               </div>
             ))
           : null
       }
-      {/* { isLoading 
-          ? <div className='loading'>loading...</div>
-          : events.map((event, index) => (
-            <div className="event-div" key={index}>
-              <a 
-                href={ event.eventLink } 
-                className="event-link"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <h2 className="event-name">{ event.eventName }</h2>
-              </a>
-            </div>
-          ))
-      } */}
     </div>
   )
 }
